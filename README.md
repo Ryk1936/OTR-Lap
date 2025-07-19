@@ -25,7 +25,7 @@ This project currently consists of two Python scripts that work together:
 ---
 
 ## File Structure
-```plaintext
+```text
 LapTimeSimulator/
 ├── LapTimeSimulator.py
 ├── GradientMaps.py
@@ -36,7 +36,7 @@ LapTimeSimulator/
 │   └── track.csv
 ├── track velocities.csv
 ├── README.md
-└── LICENSE
+└── LICENSE```
 
 ---
 
