@@ -3,7 +3,7 @@
 A simple steady-state lap time simulation and track visualization tool developed for Ontario Tech Racing.  
 Estimates lap times on custom tracks using steady-state assumptions and visualizes velocity and acceleration gradients along the track.
 
----<br>
+<br>
 
 ## Project Overview
 
@@ -22,7 +22,7 @@ This project currently consists of two Python scripts that work together:
    - Calculates acceleration profile along the track.  
    - Visualizes velocity and acceleration as color gradients on the track map.
 
----<br>
+<br>
 
 ## Requirements
 
@@ -31,7 +31,7 @@ This project currently consists of two Python scripts that work together:
   - `numpy`
   - `matplotlib`
  
----<br>
+<br>
 
 ## Running the Simulation
 
