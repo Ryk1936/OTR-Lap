@@ -25,17 +25,7 @@ This project currently consists of two Python scripts that work together:
 ---
 
 ## File Structure
-LapTimeSimulator/
-├── LapTimeSimulator.py
-├── GradientMaps.py
-├── Tracks/
-│   ├── Autocross_Michigan.csv
-│   ├── Endurance_Michigan.csv
-│   ├── debug.csv
-│   └── track.csv
-├── track velocities.csv
-├── README.md
-└── LICENSE
+<pre> ```plaintext LapTimeSimulator/ ├── LapTimeSimulator.py ├── GradientMaps.py ├── Tracks/ │ ├── Autocross_Michigan.csv │ ├── Endurance_Michigan.csv │ ├── debug.csv │ └── track.csv ├── track velocities.csv ├── README.md └── LICENSE ``` </pre>
 
 ---
 
