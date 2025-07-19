@@ -37,7 +37,7 @@ This project currently consists of two Python scripts that work together:
 
 Run the _LTSAlgorithm.py_ script that starts the lap time simulation and generates the plots:
 
-### Plot Examples
+### Plot Examples:
 ![Velocity vs Distance Graph](Images/velocity.png)
 ![Velocity and Acceleration Gradients](Images/gradients.png)
 
