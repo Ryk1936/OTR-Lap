@@ -36,7 +36,9 @@ LapTimeSimulator/
 │   └── track.csv
 ├── track velocities.csv
 ├── README.md
-└── LICENSE```
+
+<pre>
+</pre>
 
 ---
 
