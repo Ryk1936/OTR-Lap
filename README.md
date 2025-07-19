@@ -5,7 +5,7 @@ Estimates lap times on custom tracks using steady-state assumptions and visualiz
 
 ---
 
-
+<br>
 ## Project Overview
 
 This project currently consists of two Python scripts that work together:
@@ -25,7 +25,7 @@ This project currently consists of two Python scripts that work together:
 
 ---
 
-
+<br>
 ## Requirements
 
 - Python 3.8 or newer
@@ -35,12 +35,12 @@ This project currently consists of two Python scripts that work together:
  
 ---
 
-
+<br>
 ## Running the Simulation
 
 Run the _LTSAlgorithm.py_ script that starts the lap time simulation and generates the plots.
 
-
+<br>
 ### Plot Examples:
 ![Velocity vs Distance Graph](Images/velocity.png)
 ![Velocity and Acceleration Gradients](Images/gradients.png)
