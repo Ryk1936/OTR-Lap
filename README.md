@@ -1,11 +1,11 @@
-# OTR Lap
+# OTR Lap 🏁
 
 A simple steady-state lap time simulation and track visualization tool developed for Ontario Tech Racing.  
 Estimates lap times on custom tracks using steady-state assumptions and visualizes velocity and acceleration gradients along the track.
 
 <br>
 
-## Project Overview
+## Project Overview 🏎️
 
 This project currently consists of two Python scripts that work together:
 
@@ -24,7 +24,7 @@ This project currently consists of two Python scripts that work together:
 
 <br>
 
-## Requirements
+## Requirements 🛠️
 
 - Python 3.8 or newer
 - Packages:
@@ -33,11 +33,10 @@ This project currently consists of two Python scripts that work together:
  
 <br>
 
-## Running the Simulation
+## Running the Simulation ▶️
 
 Run the _LTSAlgorithm.py_ script that starts the lap time simulation and generates the plots.
 
-### Plot Examples:
+### Plot Examples 📊📈:
 ![Velocity vs Distance Graph](Images/velocity.png)
 ![Velocity and Acceleration Gradients](Images/gradients.png)
-
