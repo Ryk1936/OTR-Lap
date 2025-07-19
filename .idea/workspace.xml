@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Initial Commit - Basic LTS algorithm with no vehicle model.">
-      <change afterPath="$PROJECT_DIR$/GradientMaps.py" afterDir="false" />
+    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Added velocity/acceleration gradient generation. Uploaded track data.">
+      <change afterPath="$PROJECT_DIR$/Images/gradients.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/velocity.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LTS Basic Algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/LTSAlgorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tracks/Autocross_Michigan.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Tracks/Autocross_Michigan.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tracks/Endurance_Michigan.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Tracks/Endurance_Michigan.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tracks/debug.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Tracks/debug.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LTSAlgorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/LTSAlgorithm.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,11 +100,20 @@
       <option name="project" value="LOCAL" />
       <updated>1752117825869</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added velocity/acceleration gradient generation. Uploaded track data.">
+      <option name="closed" value="true" />
+      <created>1752967084481</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1752967084481</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit - Basic LTS algorithm with no vehicle model." />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit - Basic LTS algorithm with no vehicle model." />
+    <MESSAGE value="Added velocity/acceleration gradient generation. Uploaded track data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added velocity/acceleration gradient generation. Uploaded track data." />
   </component>
 </project>

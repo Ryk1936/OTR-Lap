@@ -12,7 +12,6 @@
 
 import csv
 import math
-import pprint
 import matplotlib.pyplot as plt
 import GradientMaps
 
@@ -160,8 +159,6 @@ for turnSegment in listTurnsApexSorted:
 
         else:
             break  # reached beginning of track
-
-pprint.pprint(trackMesh)
 
 # Calculating Total Lap Time
 totalTime = 0
