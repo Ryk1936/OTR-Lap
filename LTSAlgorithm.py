@@ -10,15 +10,16 @@
 # Step - A point on a segment where the velocity is calculated.
 
 
-import math
 import csv
+import math
 import pprint
 import matplotlib.pyplot as plt
+import GradientMaps
 
 
 # Simulation Preferences
-TRACK_FILE_NAME = "Tracks/Endurance_Michigan.csv"
-stepSize = .01  # mesh step size in meters. increase for better accuracy but longer runtime.
+TRACK_FILE_NAME = "Tracks/Autocross_Michigan.csv"
+stepSize = .1  # mesh step size in meters. increase for better accuracy but longer runtime.
 ggCircleRadius = 2  # in g's
 tempNumStepsToGen = 10
 
@@ -61,22 +62,19 @@ listStraights = []
 listTurns = []
 trackMesh = {}  # {<track index> : {"delX" : <distance to next>, "velocity" : [possible velocity solutions]}}
 
-
 # Math Variables
 accel_x = ggCircleRadius * 9.81  # in m/s^2
 accel_y = ggCircleRadius * 9.81  # in m/s^2
 
 
 # LAP TIME SIMULATION ALGORITHM =================================================================================
-
-# Loading Track Data
-with open(TRACK_FILE_NAME, mode = 'r') as file:
+# Loading in Track Data
+with open(TRACK_FILE_NAME, mode='r') as file:
     data = csv.reader(file)
 
     for segment in data:
-
         segmentLength = float(segment[0])
-        segmentRadius = float(segment[1])
+        segmentRadius = abs(float(segment[1]))  # direction of turn is not relevant in velocity calculations
 
         # Loading Turns and Solving Apex Velocities
         if segmentRadius != 0:
@@ -96,7 +94,6 @@ with open(TRACK_FILE_NAME, mode = 'r') as file:
         remainder = segmentLength % stepSize
         if remainder != 0:
             trackMesh[len(trackMesh)] = {"delX": remainder, "velocities": velocity.copy()}
-
 
 # Apex Sorting by Velocity
 listTurnsApexSorted = sorted(listTurns, key=lambda turn: turn.velocity)  # sorts apex velocities least to greatest
@@ -120,7 +117,6 @@ while not trackMesh[nextStepIndex]["velocities"] or velocity < min(trackMesh[nex
     else:
         break  # reached end of track
 
-
 # Calculating Acceleration Velocity Steps (Exiting a Turn)
 for turnSegment in listTurnsApexSorted:
 
@@ -142,7 +138,6 @@ for turnSegment in listTurnsApexSorted:
 
         else:
             break  # reached end of track
-
 
 # Calculating Deceleration Velocity Steps (Entering a Turn)
 for turnSegment in listTurnsApexSorted:
@@ -175,26 +170,41 @@ for step in trackMesh.values():
     if min(step["velocities"]) == 0: continue
     totalTime += step["delX"] / min(step["velocities"])
 
-print(f"\nElapsed Time: {round(totalTime, 2)} s")
+print(f"Lap Time: {round(totalTime, 2)} s")
 
-
-# PLOTS TEMPORARY I JUST CHATGPT FOR DEBUGGING
+# PLOTTING WAS GPT'D....
 cumulative_distance = 0
 x_points = []
 y_points = []
 
 for i in range(len(trackMesh)):
     step = trackMesh[i]
-    cumulative_distance += step['delX']
 
     x_points.append(cumulative_distance)
     y_points.append(min(step["velocities"]))
 
+    cumulative_distance += step['delX']
+
+# output data for GradientMaps.py
+outFile = "track velocities.csv"
+
+with open(outFile, mode='w', newline='') as file:
+    writer = csv.writer(file)
+
+    for i in range(len(x_points)):
+        writer.writerow([x_points[i], y_points[i]])
+
+
 # Plotting
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(20, 5))
 plt.scatter(x_points, y_points, color='blue', marker='o', s=5)
 plt.title('Velocity vs. Distance')
 plt.xlabel('Distance (m)')
 plt.ylabel('Velocity (m/s)')
 plt.grid(True)
-plt.show()
+plt.show(block=False)
+
+# Velocity and Acceleration Gradient Maps
+GradientMaps.generateGradientMaps(TRACK_FILE_NAME, stepSize)
+
+

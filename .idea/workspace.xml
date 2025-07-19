@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Steady-State Lap Time Simulator.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LTS Algorithm V1.py" afterDir="false" />
+    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Initial Commit - Basic LTS algorithm with no vehicle model.">
+      <change afterPath="$PROJECT_DIR$/GradientMaps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LTS Basic Algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/LTSAlgorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tracks/Autocross_Michigan.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Tracks/Autocross_Michigan.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tracks/Endurance_Michigan.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Tracks/Endurance_Michigan.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tracks/debug.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Tracks/debug.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +27,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Ryk1936&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Ryk1936/Steady-State-Lap-Time-Simulator.git&quot;,
+    &quot;accountId&quot;: &quot;73827f61-c87a-4fec-aa10-8ad3ec87d55e&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -38,27 +48,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.LTS Algorithm Fix.executor&quot;: &quot;Run&quot;,
-    &quot;Python.LTS Algorithm V1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.LTS Algorithm V2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.LTS Algorithm.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Simple LTS Algorithm.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Test2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.burh.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ryan Koo/PycharmProjects/OTRLap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.LTS Algorithm Fix.executor": "Run",
+    "Python.LTS Algorithm V1.executor": "Run",
+    "Python.LTS Algorithm V2.executor": "Run",
+    "Python.LTS Algorithm.executor": "Run",
+    "Python.LTS Basic Algorithm.executor": "Run",
+    "Python.LTSAlgorithm.executor": "Run",
+    "Python.Simple LTS Algorithm.executor": "Run",
+    "Python.Test.executor": "Run",
+    "Python.Test2.executor": "Run",
+    "Python.Testing.executor": "Run",
+    "Python.Track Map.executor": "Run",
+    "Python.burh.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Ryan Koo/PycharmProjects/Steady-State Lap Time Simulator"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Ryan Koo\PycharmProjects\OTRLap" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ryan Koo\PycharmProjects\Steady-State Lap Time Simulator\Tracks" />
+      <recent name="C:\Users\Ryan Koo\PycharmProjects\Steady-State Lap Time Simulator" />
       <recent name="C:\Users\Ryan Koo\PycharmProjects\OTRLap" />
     </key>
   </component>
@@ -78,6 +94,19 @@
       <option name="presentableId" value="Default" />
       <updated>1751660714695</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit - Basic LTS algorithm with no vehicle model.">
+      <option name="closed" value="true" />
+      <created>1752117825869</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1752117825869</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit - Basic LTS algorithm with no vehicle model." />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit - Basic LTS algorithm with no vehicle model." />
   </component>
 </project>
