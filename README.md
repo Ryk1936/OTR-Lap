@@ -1,4 +1,4 @@
-# Lap Time Simulator
+# OTR Lap - Lap Time Simulator
 
 A simple lap time simulation and track visualization tool developed for Ontario Tech Racing.  
 Estimates lap times on custom tracks using steady-state assumptions and visualizes velocity and acceleration gradients along the track.
