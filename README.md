@@ -24,7 +24,8 @@ This project currently consists of two Python scripts that work together:
 
 <br>
 
-##Status ⚠️
+## Status ⚠️
+
 This project is currently a work in progress.
 
 Planned features include:
