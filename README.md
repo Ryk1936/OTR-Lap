@@ -24,6 +24,15 @@ This project currently consists of two Python scripts that work together:
 
 <br>
 
+##Status ⚠️
+This project is currently a work in progress.
+
+Planned features include:
+- Adding a vehicle model to generate a ggv plot and replace the current circular gg assumption used in the lap time simulation algorithm.
+- Developing an user interface to simplify track input and simulation control for easier use.
+
+<br>
+
 ## Requirements 🛠️
 
 - Python 3.8 or newer
