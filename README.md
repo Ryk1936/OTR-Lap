@@ -26,7 +26,7 @@ This project currently consists of two Python scripts that work together:
 
 ## Status ⚠️
 
-This project is currently a <span style="color:red; font-weight:bold;">WORK IN PROGRESS</span>.
+This project is currently a ![status](https://img.shields.io/badge/status-WORK_IN_PROGRESS-red).
 
 Planned features include:
 - Adding a vehicle model to generate a ggv plot and replace the current circular gg assumption used in the lap time simulation algorithm.
