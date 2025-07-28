@@ -13,43 +13,72 @@ import math
 import matplotlib.pyplot as plt
 
 # TEMPORARY PREFERENCES
-
-
+np.set_printoptions(precision=2, suppress=True)  # Improves readability of values when debugging
+dv = 0.5 / 3.6   # m/s step (0.5 km/h). Need to look into this further. Value taken from OpenLAP
+# ^^^ Vehicle velocity mesh step size
 
 class Vehicle:
+
+    # Loaded in Vehicle Parameters
     name: str
     mass: float
-    dfm: float  # front weight distribution percentage
+    d_fm: float  # front weight distribution percentage
     Cl: float
     Cd: float
-    dam: float  # front aero distribution percentage
+    d_fa: float  # front aero distribution percentage
     frontalArea: float
     airDensity: float
-    driveType: float
+    driveType: str
     finalDriveRatio: float
     tireDiameter: float
     tireWidth: float
+    Cr: float  # single tire rolling resistance coefficent
 
-    velocities: float
+    # Calculated Vehicle Parameters
+    num_dw: int  # number of driven wheels
+    f_drive: float
+    f_aero: float
+
+    # Forces and Velocity (GGV Plot Data)
+    velocities: np.ndarray
+    N: np.ndarray
+    Fx: np.ndarray
 
     def __init__(self, vehicleName: str):
+
+        # Loading in Vehicle Parameters
         parametersDF = pd.read_excel(f"Vehicles/{vehicleName}/parameters.xlsx")
 
         # gotta find a better way to do this bruh. not very scalable at the moment.
         self.name = parametersDF["Value"][0]
         self.mass = parametersDF["Value"][1]
-        self.dfm = parametersDF["Value"][2]
+        self.d_fm = parametersDF["Value"][2]
         self.Cl = parametersDF["Value"][3]
         self.Cd = parametersDF["Value"][4]
-        self.dam = parametersDF["Value"][5]
+        self.d_fa = parametersDF["Value"][5]
         self.frontalArea = parametersDF["Value"][6]
         self.airDensity = parametersDF["Value"][7]
         self.driveType = parametersDF["Value"][8]
         self.finalDriveRatio = parametersDF["Value"][9]
         self.tireDiameter = parametersDF["Value"][10] / 39.37  # conversion from inch to metres
         self.tireWidth = parametersDF["Value"][11] / 39.37  # conversion from inch to metres
+        self.Cr = parametersDF["Value"][12]
 
-        powertrain()
+        # Calculating Vehicle Parameters
+        if self.driveType == "RWD":
+            self.num_dw = 2
+            self.f_drive = 1 - self.d_fm
+            self.f_aero = 1 - self.d_fa
+
+        elif self.driveType == "FWD":
+            self.num_dw = 2
+            self.f_drive = self.d_fm
+            self.f_aero = self.d_fa
+
+        else:
+            self.num_dw = 4
+            self.f_drive = 1
+            self.f_aero = 1
 
 
     # Submodels
@@ -68,29 +97,45 @@ class Vehicle:
 
         wheelSpeed = motorSpeed / self.finalDriveRatio  # RPM
         vehicleSpeed = math.pi * self.tireDiameter / 60 * wheelSpeed  # m/s
-        self.velocities = vehicleSpeed * 3.6  # km/h
+        vehicleMinSpeed = min(vehicleSpeed)
+        vehicleMaxSpeed = max(vehicleSpeed)
+        self.velocities = np.linspace(vehicleMinSpeed, vehicleMaxSpeed, int((vehicleMaxSpeed - vehicleMinSpeed) / dv) + 1)
 
-        plt.figure()
-        plt.plot(motorSpeed, motorTorque)
-        plt.xlabel("RPM")
-        plt.ylabel("Torque (Nm)")
-        plt.title("Motor Torque Curve")
-        plt.grid(True)
-
-        plt.figure()
-        plt.plot(motorSpeed, motorPower, color='orange')
-        plt.xlabel("RPM")
-        plt.ylabel("Power (W)")
-        plt.title("Motor Power Curve")
-        plt.grid(True)
-
-        plt.show()
+        # plt.figure()
+        # plt.plot(motorSpeed, motorTorque)
+        # plt.xlabel("RPM")
+        # plt.ylabel("Torque (Nm)")
+        # plt.title("Motor Torque Curve")
+        # plt.grid(True)
+        #
+        # plt.figure()
+        # plt.plot(motorSpeed, motorPower, color='orange')
+        # plt.xlabel("RPM")
+        # plt.ylabel("Power (W)")
+        # plt.title("Motor Power Curve")
+        # plt.grid(True)
+        #
+        # plt.show()
 
 
     # Description: Calculates the normal and aero loads acting on the vehicle at differnt speeds.
+    #              Track inclination and banking is not considered in this model.
     # Returns: idk yet bruh...
-    def external_forces(self, velocity: float):
-        pass
+    def external_forces(self):
+
+        # Z - Axis
+        Fz_weight = self.mass * -9.81  # weight of vehicle
+        Fz_aero = 0.5 * self.airDensity * self.frontalArea * self.Cl * self.velocities ** 2  # force of downforce (or lift)
+        Fz_frontAxle = Fz_weight * self.d_fm + Fz_aero * self.d_fa
+        Fz_rearAxle = Fz_weight * (1 - self.d_fm) + Fz_aero * (1 - self.d_fa)
+        N = abs(Fz_frontAxle + Fz_rearAxle)  # normal force
+
+        # X - Axis
+        Fx_aero = 0.5 * self.airDensity * self.frontalArea * self.Cd * self.velocities ** 2  # force of drag
+        Fx_rr_frontAxle = 2 * self.Cr * abs(Fz_frontAxle)  # force of rolling resistance front axle
+        Fx_rr_rearAxle =  2 * self.Cr * abs(Fz_rearAxle)  # force of rolling resistance rear axle
+        Fx_rr = Fx_rr_frontAxle + Fx_rr_rearAxle  # force of rolling resistance on vehicle
+        Fx = Fx_aero + Fx_rr  # forces acting on the x-axis
 
 
     # Description: Calculates the lateral and longitudinal grip limits of the vehicle at different speeds.
@@ -121,3 +166,4 @@ if __name__ == "__main__":
     model = Vehicle("F25")
 
     model.powertrain()
+    model.external_forces()
