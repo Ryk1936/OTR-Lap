@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Added velocity/acceleration gradient generation. Uploaded track data.">
-      <change afterPath="$PROJECT_DIR$/Images/gradients.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/velocity.png" afterDir="false" />
+    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Uploaded plot example images for README file.">
+      <change afterPath="$PROJECT_DIR$/Vehicle.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Vehicles/F25/motor_curve.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Vehicles/F25/parameters.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LTSAlgorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/LTSAlgorithm.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +37,12 @@
     &quot;accountId&quot;: &quot;73827f61-c87a-4fec-aa10-8ad3ec87d55e&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Vehicle.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -59,11 +65,13 @@
     "Python.Test2.executor": "Run",
     "Python.Testing.executor": "Run",
     "Python.Track Map.executor": "Run",
+    "Python.Vehicle.executor": "Run",
     "Python.burh.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Ryan Koo/PycharmProjects/Steady-State Lap Time Simulator"
+    "last_opened_file_path": "C:/Users/Ryan Koo/PycharmProjects/Steady-State Lap Time Simulator",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -71,9 +79,11 @@
       <recent name="C:\Users\Ryan Koo\PycharmProjects\OTRLap" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ryan Koo\PycharmProjects\Steady-State Lap Time Simulator\Vehicles\F25" />
+      <recent name="C:\Users\Ryan Koo\PycharmProjects\Steady-State Lap Time Simulator\Vehicles" />
+      <recent name="C:\Users\Ryan Koo\PycharmProjects\Steady-State Lap Time Simulator\Images" />
       <recent name="C:\Users\Ryan Koo\PycharmProjects\Steady-State Lap Time Simulator\Tracks" />
       <recent name="C:\Users\Ryan Koo\PycharmProjects\Steady-State Lap Time Simulator" />
-      <recent name="C:\Users\Ryan Koo\PycharmProjects\OTRLap" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -108,12 +118,21 @@
       <option name="project" value="LOCAL" />
       <updated>1752967084481</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Uploaded plot example images for README file.">
+      <option name="closed" value="true" />
+      <created>1752968822403</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1752968822403</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit - Basic LTS algorithm with no vehicle model." />
     <MESSAGE value="Added velocity/acceleration gradient generation. Uploaded track data." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added velocity/acceleration gradient generation. Uploaded track data." />
+    <MESSAGE value="Uploaded plot example images for README file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Uploaded plot example images for README file." />
   </component>
 </project>
