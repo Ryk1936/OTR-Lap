@@ -1,11 +1,11 @@
-# OTR Lap - Lap Time Simulator
+# OTR Lap 🏁
 
-A simple lap time simulation and track visualization tool developed for Ontario Tech Racing.  
+A simple steady-state lap time simulation and track visualization tool developed for Ontario Tech Racing.  
 Estimates lap times on custom tracks using steady-state assumptions and visualizes velocity and acceleration gradients along the track.
 
----
+<br>
 
-## Project Overview
+## Project Overview 🏎️
 
 This project currently consists of two Python scripts that work together:
 
@@ -22,22 +22,31 @@ This project currently consists of two Python scripts that work together:
    - Calculates acceleration profile along the track.  
    - Visualizes velocity and acceleration as color gradients on the track map.
 
----
+<br>
 
-## Requirements
+## Status ⚠️
+
+This project is currently a **WORK IN PROGRESS**.
+
+Planned features include:
+- Adding a vehicle model to generate a ggv plot and replace the current circular gg assumption used in the lap time simulation algorithm.
+- Developing an user interface to simplify track input and simulation control for easier use.
+
+<br>
+
+## Requirements 🛠️
 
 - Python 3.8 or newer
 - Packages:
   - `numpy`
   - `matplotlib`
  
----
+<br>
 
-## Running the Simulation
+## Running the Simulation ▶️
 
-Run the _LTSAlgorithm.py_ script that starts the lap time simulation and generates the plots:
+Run the _LTSAlgorithm.py_ script that starts the lap time simulation and generates the plots.
 
-### Plot Examples
+### Plot Examples 📊📈:
 ![Velocity vs Distance Graph](Images/velocity.png)
 ![Velocity and Acceleration Gradients](Images/gradients.png)
-
