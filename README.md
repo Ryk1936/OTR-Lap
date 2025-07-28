@@ -1,7 +1,8 @@
 # OTR Lap 🏁
 
-A simple steady-state lap time simulation and track visualization tool developed for Ontario Tech Racing.  
+A simple steady-state lap time simulation and track visualization tool developed for the Ontario Tech Racing Team.  
 Estimates lap times on custom tracks using steady-state assumptions and visualizes velocity and acceleration gradients along the track.
+This simulator is designed specifically for EV's.
 
 <br>
 
