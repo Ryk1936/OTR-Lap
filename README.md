@@ -32,6 +32,8 @@ This project is currently a **WORK IN PROGRESS**.
 Planned features include:
 - Adding a vehicle model to generate a ggv plot and replace the current circular gg assumption used in the lap time simulation algorithm.
 - Developing an user interface to simplify track input and simulation control for easier use.
+- Saving of computed vehicle data to allow for faster runtime.
+- Load transfers and battery discharge.
 
 <br>
 
