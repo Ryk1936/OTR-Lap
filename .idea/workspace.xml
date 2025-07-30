@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Fix scalability issues and add stripping of whitespace for Excel input">
+    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Implement magic formula tire model and update powertrain model to compute motor tractive forces.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vehicle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vehicle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vehicles/F25/parameters.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Vehicles/F25/parameters.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753892909489</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Implement magic formula tire model and update powertrain model to compute motor tractive forces.">
+      <option name="closed" value="true" />
+      <created>1753917006199</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1753917006199</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -160,6 +167,7 @@
     <MESSAGE value="Added basic powertrain model and vehicle parameters" />
     <MESSAGE value="Added external force model and updated powertrain model." />
     <MESSAGE value="Fix scalability issues and add stripping of whitespace for Excel input" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix scalability issues and add stripping of whitespace for Excel input" />
+    <MESSAGE value="Implement magic formula tire model and update powertrain model to compute motor tractive forces." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement magic formula tire model and update powertrain model to compute motor tractive forces." />
   </component>
 </project>

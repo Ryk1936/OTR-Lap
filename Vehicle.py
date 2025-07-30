@@ -54,7 +54,7 @@ class Vehicle:
     N_dw: np.ndarray  # normal force on driven wheels
     Fx_motor: np.ndarray  # motor tractive force
     Fx_aero: np.ndarray  # aerodynamic drag
-    Fx_rr: np.ndarray  # rolling resistance
+    Fx_rr: np.ndarray # rolling resistance
     Fz_weight: float  # vehicle weight
     Fz_aero: np.ndarray  # aerodynamic downforce
     Fx_tires_accel: np.ndarray  # longitudinal forces tires can provide when accelerating (only driven wheels)
@@ -177,26 +177,26 @@ class Vehicle:
         slipAngle_deg = np.linspace(-15, 15, 500)  # sweep slip angle from -15 deg to 15 deg.
         slipAngle_rad = np.radians(slipAngle_deg)
         slipRatio = np.linspace(-0.3, 0.3, 500)  # sweep slip ratio from -30% to 30%.
-        N_values = np.linspace(min(self.N), max(self.N), 5) / 4  # assuming equal weight distribution on all wheels
+        N_values = np.linspace(min(self.N), max(self.N), len(self.velocities)) / 4  # assuming equal weight distribution on all wheels
 
         def magic_formula(x, B, C, D, E):
             return D * np.sin(C * np.arctan(B * x - E * (B * x - np.arctan(B * x))))
 
         # single tire Fx values
-        Fx_tire: np.ndarray
-        for N in N_values:
-            D = self.mu_y * N  # no normal load sensitivity considered***
-            np.append(self.Fx_tire, np.max(magic_formula(slipRatio, self.B, self.C, D, self.E)))
+        Fx_tire = np.zeros(len(N_values))
+        for i in range(len(N_values)):
+            D = self.mu_y * N_values[i]  # no normal load sensitivity considered***
+            Fx_tire[i] = np.max(magic_formula(slipRatio, self.B, self.C, D, self.E))
 
         # single tire Fy values
-        Fy_tire: np.ndarray
-        for N in N_values:
-            D = self.mu_y * N
-            np.append(self.Fy_tire, np.max(magic_formula(slipAngle_rad, self.B, self.C, D, self.E)))
+        Fy_tire = np.zeros(len(N_values))
+        for i in range(len(N_values)):
+            D = self.mu_y * N_values[i]
+            Fy_tire[i] = np.max(magic_formula(slipAngle_rad, self.B, self.C, D, self.E))
 
         self.Fx_tires_accel = Fx_tire * self.num_dw
         self.Fx_tires_deccel = Fx_tire * 4
-        self.Fy_tires = Fy * 4
+        self.Fy_tires = Fy_tire * 4
 
 
     # Description: Driven channel for calculating driver braking forces.
@@ -217,9 +217,9 @@ class Vehicle:
     # Raises:
     def ggv(self):
 
-        # Converting force values to acceleration
-
-        pass
+        # Converting forces to accleration values
+        ax_drag = self.Fx_aero / self.Fz_weight
+        print(ax_drag)
 
 
 if __name__ == "__main__":
@@ -228,3 +228,4 @@ if __name__ == "__main__":
     model.powertrain()
     model.external_forces()
     model.tires()
+    model.ggv()
