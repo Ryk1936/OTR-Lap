@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Added basic powertrain model and vehicle parameters">
+    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Added external force model and updated powertrain model.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vehicle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vehicle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vehicles/F25/parameters.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Vehicles/F25/parameters.xlsx" afterDir="false" />
@@ -51,28 +51,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.LTS Algorithm Fix.executor&quot;: &quot;Run&quot;,
-    &quot;Python.LTS Algorithm V1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.LTS Algorithm V2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.LTS Algorithm.executor&quot;: &quot;Run&quot;,
-    &quot;Python.LTS Basic Algorithm.executor&quot;: &quot;Run&quot;,
-    &quot;Python.LTSAlgorithm.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Simple LTS Algorithm.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Test2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Testing.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Track Map.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Vehicle.executor&quot;: &quot;Run&quot;,
-    &quot;Python.burh.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ryan Koo/PycharmProjects/Steady-State Lap Time Simulator&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.LTS Algorithm Fix.executor": "Run",
+    "Python.LTS Algorithm V1.executor": "Run",
+    "Python.LTS Algorithm V2.executor": "Run",
+    "Python.LTS Algorithm.executor": "Run",
+    "Python.LTS Basic Algorithm.executor": "Run",
+    "Python.LTSAlgorithm.executor": "Run",
+    "Python.Simple LTS Algorithm.executor": "Run",
+    "Python.Test.executor": "Run",
+    "Python.Test2.executor": "Run",
+    "Python.Testing.executor": "Run",
+    "Python.Testing2.executor": "Run",
+    "Python.Track Map.executor": "Run",
+    "Python.Vehicle.executor": "Run",
+    "Python.burh.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Ryan Koo/PycharmProjects/Steady-State Lap Time Simulator",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Ryan Koo\PycharmProjects\OTRLap" />
@@ -133,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753729233325</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added external force model and updated powertrain model.">
+      <option name="closed" value="true" />
+      <created>1753738526522</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1753738526522</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -141,6 +150,7 @@
     <MESSAGE value="Added velocity/acceleration gradient generation. Uploaded track data." />
     <MESSAGE value="Uploaded plot example images for README file." />
     <MESSAGE value="Added basic powertrain model and vehicle parameters" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added basic powertrain model and vehicle parameters" />
+    <MESSAGE value="Added external force model and updated powertrain model." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added external force model and updated powertrain model." />
   </component>
 </project>
