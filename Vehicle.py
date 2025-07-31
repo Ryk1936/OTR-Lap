@@ -78,6 +78,8 @@ class Vehicle:
         self.tire_w = self.tire_w / 39.37  # in to m
         self.R_e = self.R_e / 39.37  # in to m
 
+        # PARAMETER OVERRIDE (for debugging and GGV plot understanding)
+        self.Cl = -10
 
         # Calculating Vehicle Parameters
         if self.drive_type == "RWD":
@@ -110,7 +112,7 @@ class Vehicle:
 
         # Vehicle max/min speed and velocity meshing
         motorSpeed = motorCurveDF["RPM"].to_numpy()  # RPM
-        motorTorque = motorCurveDF["Torque (Nm)"].to_numpy()  # Nm
+        motorTorque = motorCurveDF["Torque (Nm)"].to_numpy() # Nm
         motorPower = motorTorque * motorSpeed * 2*math.pi/60  # Watts
 
         wheelSpeed = motorSpeed / self.fdr  # in RPM   #  gear ratios do not cause speed losses only torque and power loss
@@ -218,6 +220,8 @@ class Vehicle:
     # Raises:
     def ggv(self):
 
+        # TODO: Fix Bugs. Not displaying a physically possible GGV diagram.
+
         # n = 50
         #
         # # Acceleration from aero
@@ -237,9 +241,10 @@ class Vehicle:
         # ax_deccel = ax_tire_max_decel * np.sqrt(1 - (ay / ay_max)**2) + ax_drag
 
         n = 25
-        ax_all = []
-        ay_all = []
-        v_all = []
+
+        ax_surf = []  # will be shape (2*n, len(velocities))
+        ay_surf = []  # same shape
+        v_surf = []  # same shape
 
         for i in range(len(self.velocities)):
             ay_max_i = self.Fy_tires[i] / self.m
@@ -254,21 +259,30 @@ class Vehicle:
             ax_accel = np.minimum(ax_tire_accel_i * np.sqrt(1 - (ay / ay_max_i) ** 2), ax_motor_i) + ax_drag_i
             ax_decel = -ax_tire_decel_i * np.sqrt(1 - (ay / ay_max_i) ** 2) + ax_drag_i
 
-            ax = np.concatenate([ax_decel[::-1], ax_accel])
-            ay = np.concatenate([-ay[::-1], ay])  # mirror to negative ay side
+            ax_col = np.concatenate([ax_decel[::-1], ax_accel])
+            ay_col = np.concatenate([-ay[::-1], ay])  # mirror lateral acceleration
 
-            ax_all.extend(ax)
-            ay_all.extend(ay)
-            v_all.extend([self.velocities[i]] * len(ax))
+            ax_surf.append(ax_col)
+            ay_surf.append(ay_col)
+            v_surf.append(np.full_like(ax_col, self.velocities[i]))
 
-        # 3D scatter plot with colour by velocity
+        # Convert to 2D numpy arrays of shape (len(velocities), 2*n)
+        ax_surf = np.array(ax_surf).T  # shape: (2*n, len(velocities))
+        ay_surf = np.array(ay_surf).T
+        v_surf = np.array(v_surf).T
+
+        # Now create the surface plot
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
-        sc = ax.scatter(ax_all, ay_all, v_all, c=v_all, cmap='viridis')
+
+        # Plot surface with velocity as Z axis, ax and ay as X and Y
+        surf = ax.plot_surface(ax_surf, ay_surf, v_surf, cmap='viridis', edgecolor='none')
+
         ax.set_xlabel('Longitudinal Acceleration (G)')
         ax.set_ylabel('Lateral Acceleration (G)')
         ax.set_zlabel('Velocity (m/s)')
-        plt.colorbar(sc, label='Velocity (m/s)')
+
+        fig.colorbar(surf, label='Velocity (m/s)')
         plt.show()
 
 

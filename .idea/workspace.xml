@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Fix math errors in tire model.">
+    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Add new vehicles and temporary GGV plotting code.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vehicle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vehicle.py" afterDir="false" />
     </list>
@@ -165,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753919052991</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add new vehicles and temporary GGV plotting code.">
+      <option name="closed" value="true" />
+      <created>1753924876271</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1753924876271</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -177,6 +185,7 @@
     <MESSAGE value="Fix scalability issues and add stripping of whitespace for Excel input" />
     <MESSAGE value="Implement magic formula tire model and update powertrain model to compute motor tractive forces." />
     <MESSAGE value="Fix math errors in tire model." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix math errors in tire model." />
+    <MESSAGE value="Add new vehicles and temporary GGV plotting code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add new vehicles and temporary GGV plotting code." />
   </component>
 </project>
