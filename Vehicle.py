@@ -124,6 +124,7 @@ class Vehicle:
         motorSpeed_2 = wheelSpeed_2 * self.fdr  # in RPM
         motorTorque_2 = np.interp(motorSpeed_2, motorSpeed, motorTorque)
         self.Fx_motor = motorTorque_2 * self.fdr * self.eta / self.R_e  # drivetrain efficency accounted for
+        print(self.Fx_motor)
 
         # fig, ax1 = plt.subplots()
         #
@@ -217,13 +218,63 @@ class Vehicle:
     # Raises:
     def ggv(self):
 
-        # Converting forces to accleration values
-        ax_drag = self.Fx_aero / self.Fz_weight
-        print(ax_drag)
+        # n = 50
+        #
+        # # Acceleration from aero
+        # ax_drag = self.Fx_aero / self.m  # drag acceleration
+        #
+        # # Acceleration from motor
+        # ax_motor = self.Fx_motor / self.m  # max positive longitudinal tractive force from motor
+        #
+        # # Accleration from tires
+        # ax_tire_max_accel = self.Fx_tires_accel / self.m  # max positive longitudinal force provided by driven wheels
+        # ax_tire_max_decel = self.Fx_tires_deccel / self.m  # max negative longitudinal force provided by tires
+        # ay_max = self.Fy_tires / self.m  # max lateral force provided by tires
+        #
+        # ay = ay_max * np.cos(np.linspace(0, np.pi, n))
+        # ax_tire_accel = ax_tire_max_accel * np.sqrt(1 - (ay / ay_max)**2)
+        # ax_accel = min(ax_tire_accel, ax_motor) + ax_drag
+        # ax_deccel = ax_tire_max_decel * np.sqrt(1 - (ay / ay_max)**2) + ax_drag
+
+        n = 25
+        ax_all = []
+        ay_all = []
+        v_all = []
+
+        for i in range(len(self.velocities)):
+            ay_max_i = self.Fy_tires[i] / self.m
+            ax_motor_i = self.Fx_motor[i] / self.m
+            ax_tire_accel_i = self.Fx_tires_accel[i] / self.m
+            ax_tire_decel_i = self.Fx_tires_deccel[i] / self.m
+            ax_drag_i = self.Fx_aero[i] / self.m
+
+            ay_angles = np.linspace(0, np.pi, n)
+            ay = ay_max_i * np.cos(ay_angles)
+
+            ax_accel = np.minimum(ax_tire_accel_i * np.sqrt(1 - (ay / ay_max_i) ** 2), ax_motor_i) + ax_drag_i
+            ax_decel = -ax_tire_decel_i * np.sqrt(1 - (ay / ay_max_i) ** 2) + ax_drag_i
+
+            ax = np.concatenate([ax_decel[::-1], ax_accel])
+            ay = np.concatenate([-ay[::-1], ay])  # mirror to negative ay side
+
+            ax_all.extend(ax)
+            ay_all.extend(ay)
+            v_all.extend([self.velocities[i]] * len(ax))
+
+        # 3D scatter plot with colour by velocity
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+        sc = ax.scatter(ax_all, ay_all, v_all, c=v_all, cmap='viridis')
+        ax.set_xlabel('Longitudinal Acceleration (G)')
+        ax.set_ylabel('Lateral Acceleration (G)')
+        ax.set_zlabel('Velocity (m/s)')
+        plt.colorbar(sc, label='Velocity (m/s)')
+        plt.show()
+
 
 
 if __name__ == "__main__":
-    model = Vehicle("F24")
+    model = Vehicle("F24_Continuous_Torque")
 
     model.powertrain()
     model.external_forces()
