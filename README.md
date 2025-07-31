@@ -27,7 +27,7 @@ This project currently consists of 3 Python scripts:
    - Reads in parameters from a vehicle in the `Vehicle` directory.
    - Calculates external forces acting on vehicle
    - Calculates traction limits from tires
-   - Generates a GGV plot.
+   - Generates a GGV plot (some bugs currently).
 
 <br>
 
