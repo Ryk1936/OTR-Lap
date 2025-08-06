@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Add new vehicles and temporary GGV plotting code.">
+    <list default="true" id="d7ca3e24-f868-4de9-8b70-38607896e841" name="Changes" comment="Add comments.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vehicle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vehicle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vehicles/F24_Continuous_Torque/parameters.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Vehicles/F24_Continuous_Torque/parameters.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vehicles/F24_Peak_Torque/parameters.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Vehicles/F24_Peak_Torque/parameters.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vehicles/F25/parameters.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Vehicles/F25/parameters.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +55,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python.GradientMaps.executor&quot;: &quot;Run&quot;,
     &quot;Python.LTS Algorithm Fix.executor&quot;: &quot;Run&quot;,
     &quot;Python.LTS Algorithm V1.executor&quot;: &quot;Run&quot;,
     &quot;Python.LTS Algorithm V2.executor&quot;: &quot;Run&quot;,
@@ -173,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753924876271</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add comments.">
+      <option name="closed" value="true" />
+      <created>1753927970894</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1753927970894</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -186,6 +198,7 @@
     <MESSAGE value="Implement magic formula tire model and update powertrain model to compute motor tractive forces." />
     <MESSAGE value="Fix math errors in tire model." />
     <MESSAGE value="Add new vehicles and temporary GGV plotting code." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add new vehicles and temporary GGV plotting code." />
+    <MESSAGE value="Add comments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add comments." />
   </component>
 </project>

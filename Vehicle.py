@@ -73,13 +73,16 @@ class Vehicle:
         for key, value in dictParameters.items():
             setattr(self, key, value)
 
+        # PARAMETER OVERRIDE (for debugging and GGV plot understanding)
+        # self.Cl = -10
+        self.fdr = 3.6
+        self.eta = 1
+        self.R_e = 9
+
         # Unit Conversions
         self.tire_d = self.tire_d / 39.37  # in to m
         self.tire_w = self.tire_w / 39.37  # in to m
         self.R_e = self.R_e / 39.37  # in to m
-
-        # PARAMETER OVERRIDE (for debugging and GGV plot understanding)
-        self.Cl = -10
 
         # Calculating Vehicle Parameters
         if self.drive_type == "RWD":
@@ -120,33 +123,33 @@ class Vehicle:
         vehicleMinSpeed = min(vehicleSpeed)
         vehicleMaxSpeed = max(vehicleSpeed)
         self.velocities = np.linspace(vehicleMinSpeed, vehicleMaxSpeed, int((vehicleMaxSpeed - vehicleMinSpeed) / dv) + 1)
+        print(f"Max Speed: {vehicleMaxSpeed * 3.6}")
 
         # Motor tractive forces
         wheelSpeed_2 = self.velocities * 60 / math.pi * self.R_e * 2
         motorSpeed_2 = wheelSpeed_2 * self.fdr  # in RPM
         motorTorque_2 = np.interp(motorSpeed_2, motorSpeed, motorTorque)
         self.Fx_motor = motorTorque_2 * self.fdr * self.eta / self.R_e  # drivetrain efficency accounted for
-        print(self.Fx_motor)
 
-        # fig, ax1 = plt.subplots()
-        #
-        # # First Y-axis (left) — Torque
-        # ax1.plot(motorSpeed, motorTorque, color='blue', label='Torque (Nm)')
-        # ax1.set_xlabel('RPM')
-        # ax1.set_ylabel('Torque (Nm)', color='blue')
-        # ax1.tick_params(axis='y', labelcolor='blue')
-        #
-        # # Second Y-axis (right) — Power
-        # ax2 = ax1.twinx()
-        # ax2.plot(motorSpeed, motorPower, color='orange', label='Power (W)')
-        # ax2.set_ylabel('Power (W)', color='orange')
-        # ax2.tick_params(axis='y', labelcolor='orange')
-        #
-        # # Title & grid
-        # plt.title("Motor Curves")
-        # ax1.grid(True)
-        #
-        # plt.show()
+        fig, ax1 = plt.subplots()
+
+        # First Y-axis (left) — Torque
+        ax1.plot(motorSpeed, motorTorque, color='blue', label='Torque (Nm)')
+        ax1.set_xlabel('RPM')
+        ax1.set_ylabel('Torque (Nm)', color='blue')
+        ax1.tick_params(axis='y', labelcolor='blue')
+
+        # Second Y-axis (right) — Power
+        ax2 = ax1.twinx()
+        ax2.plot(motorSpeed, motorPower, color='orange', label='Power (W)')
+        ax2.set_ylabel('Power (W)', color='orange')
+        ax2.tick_params(axis='y', labelcolor='orange')
+
+        # Title & grid
+        plt.title("Motor Curves")
+        ax1.grid(True)
+
+        plt.show()
 
 
     # Description: Calculates the normal and aero loads acting on the vehicle at differnt speeds.
@@ -168,7 +171,8 @@ class Vehicle:
         self.Fx_aero = 0.5 * self.rho * self.A * self.Cd * self.velocities ** 2  # force of drag
         Fx_rr_frontAxle = 2 * self.Crr * abs(Fz_frontAxle)  # force of rolling resistance front axle
         Fx_rr_rearAxle =  2 * self.Crr * abs(Fz_rearAxle)  # force of rolling resistance rear axle
-        self.Fx_rr = Fx_rr_frontAxle + Fx_rr_rearAxle  # force of rolling resistance on vehicle
+        self.Fx_rr = Fx_rr_frontAxle + Fx_rr_rearAxle  # force of rolling resistance on vehicle (CHECK SIGN)
+        print(self.Fx_aero)
 
 
     # Description: Calculates the lateral and longitudinal grip limits of the vehicle at different speeds.
@@ -176,6 +180,7 @@ class Vehicle:
     def tires(self):
 
         # TODO: Add normal load distribution consisderation for front and rear wheels.
+        # TODO: Include normal load sensitivity consisderations
 
         slipAngle_deg = np.linspace(-15, 15, 500)  # sweep slip angle from -15 deg to 15 deg.
         slipAngle_rad = np.radians(slipAngle_deg)
@@ -240,7 +245,7 @@ class Vehicle:
         # ax_accel = min(ax_tire_accel, ax_motor) + ax_drag
         # ax_deccel = ax_tire_max_decel * np.sqrt(1 - (ay / ay_max)**2) + ax_drag
 
-        n = 25
+        n = 20
 
         ax_surf = []  # will be shape (2*n, len(velocities))
         ay_surf = []  # same shape
@@ -252,6 +257,7 @@ class Vehicle:
             ax_tire_accel_i = self.Fx_tires_accel[i] / self.m
             ax_tire_decel_i = self.Fx_tires_deccel[i] / self.m
             ax_drag_i = self.Fx_aero[i] / self.m
+            print(ax_drag_i)
 
             ay_angles = np.linspace(0, np.pi, n)
             ay = ay_max_i * np.cos(ay_angles)
@@ -259,8 +265,8 @@ class Vehicle:
             ax_accel = np.minimum(ax_tire_accel_i * np.sqrt(1 - (ay / ay_max_i) ** 2), ax_motor_i) + ax_drag_i
             ax_decel = -ax_tire_decel_i * np.sqrt(1 - (ay / ay_max_i) ** 2) + ax_drag_i
 
-            ax_col = np.concatenate([ax_decel[::-1], ax_accel])
-            ay_col = np.concatenate([-ay[::-1], ay])  # mirror lateral acceleration
+            ax_col = np.concatenate([ax_decel[::-1], [np.nan], ax_accel])
+            ay_col = np.concatenate([-ay[::-1], [np.nan], ay])  # mirror lateral acceleration
 
             ax_surf.append(ax_col)
             ay_surf.append(ay_col)
@@ -271,20 +277,53 @@ class Vehicle:
         ay_surf = np.array(ay_surf).T
         v_surf = np.array(v_surf).T
 
-        # Now create the surface plot
-        fig = plt.figure()
-        ax = fig.add_subplot(111, projection='3d')
+        import matplotlib as mpl
+        mpl.rcParams['toolbar'] = 'none'  # remove toolbar
 
-        # Plot surface with velocity as Z axis, ax and ay as X and Y
-        surf = ax.plot_surface(ax_surf, ay_surf, v_surf, cmap='viridis', edgecolor='none')
+        # Create figure
+        fig = plt.figure(figsize=(12, 10))
 
-        ax.set_xlabel('Longitudinal Acceleration (G)')
-        ax.set_ylabel('Lateral Acceleration (G)')
-        ax.set_zlabel('Velocity (m/s)')
+        # 1. Isometric view
+        ax1 = fig.add_subplot(221, projection='3d')
+        ax1.plot_surface(ax_surf, ay_surf, v_surf, cmap='viridis', edgecolor='none')
+        ax1.set_xlabel('Longitudinal Acceleration (m/s²)')
+        ax1.set_ylabel('Lateral Acceleration (m/s²)')
+        ax1.set_zlabel('Velocity (m/s)')
+        ax1.view_init(elev=25, azim=-45)
+        ax1.set_title("Isometric View")
 
-        fig.colorbar(surf, label='Velocity (m/s)')
+        # 2. Top view
+        ax2 = fig.add_subplot(222, projection='3d')
+        ax2.set_proj_type('ortho')
+        ax2.plot_surface(ax_surf, ay_surf, v_surf, cmap='viridis', edgecolor='none')
+        ax2.view_init(elev=90, azim=-90)
+        ax2.set_xlabel('Longitudinal Acceleration (m/s²)')
+        ax2.set_ylabel('Lateral Acceleration (m/s²)')
+        ax2.set_zticklabels([])  # remove stacked labels
+        ax2.set_title("Top View")
+
+        # 3. Side view
+        ax3 = fig.add_subplot(223, projection='3d')
+        ax3.set_proj_type('ortho')
+        ax3.plot_surface(ax_surf, ay_surf, v_surf, cmap='viridis', edgecolor='none')
+        ax3.view_init(elev=0, azim=0)
+        ax3.set_ylabel('Lateral Acceleration (m/s²)')
+        ax3.set_zlabel('Velocity (m/s)')
+        ax3.set_xticklabels([])  # remove stacked labels
+        ax3.set_title("Side View")
+
+        # 4. Back view
+        ax4 = fig.add_subplot(224, projection='3d')
+        ax4.set_proj_type('ortho')
+        ax4.plot_surface(ax_surf, ay_surf, v_surf, cmap='viridis', edgecolor='none')
+        ax4.view_init(elev=0, azim=90)
+        ax4.set_xlabel('Longitudinal Acceleration (m/s²)')
+        ax4.set_zlabel('Velocity (m/s)')
+        ax4.set_yticklabels([])  # remove stacked labels
+        ax4.set_title("Back View")
+
+        plt.ioff()
         plt.show()
-
 
 
 if __name__ == "__main__":
